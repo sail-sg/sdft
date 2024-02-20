@@ -1,0 +1,130 @@
+{ 
+  "gsm8k": {
+    "file_name": "gsm8k.json",
+    "columns": {
+      "prompt": "question",
+      "response": "answer"
+    }
+  },
+  "gsm8k_test": {
+    "file_name": "gsm8k_test.json",
+    "columns": {
+      "prompt": "question",
+      "response": "answer"
+    }
+  },
+  "distilled_gsm8k": {
+    "file_name": "distilled_gsm8k.json",
+    "columns": {
+      "prompt": "question",
+      "response": "answer"
+    }
+  },
+  "multiarith_test": {
+    "file_name": "multiarith_test.json",
+    "columns": {
+      "prompt": "instruction",
+      "response": "output"
+    }
+  },
+  "magicoder": {
+    "file_name": "magicoder.json",
+    "columns": {
+      "prompt": "instruction",
+      "response": "output"
+    }
+  },
+  "distilled_magicoder": {
+    "file_name": "distilled_magicoder.json",
+    "columns": {
+      "prompt": "instruction",
+      "response": "output"
+    }
+  },
+  "openfunction": {
+    "file_name": "openfunction.json",
+    "columns": {
+      "prompt": "instruction",
+      "response": "output"
+    }
+  },
+  "openfunction_test": {
+    "file_name": "openfunction_test.json",
+    "columns": {
+      "prompt": "instruction",
+      "response": "output"
+    }
+  },
+  "distilled_openfunction": {
+    "file_name": "distilled_openfunction.json",
+    "columns": {
+      "prompt": "instruction",
+      "response": "output"
+    }
+  },
+  "alpaca": {
+    "file_name": "alpaca.json",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output"
+    }
+  },
+  "distilled_alpaca": {
+    "file_name": "distilled_alpaca.json",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output"
+    }
+  },
+  "dolly": {
+    "file_name": "dolly.json",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output"
+    }
+  },
+  "distilled_dolly": {
+    "file_name": "distilled_dolly.json",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output"
+    }
+  },
+  "lima": {
+    "file_name": "lima.json",
+    "file_sha1": "9db59f6b7007dc4b17529fc63379b9cd61640f37",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output",
+      "history": "history"
+    }
+  },
+  "distilled_lima": {
+    "file_name": "distilled_lima.json",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output",
+      "history": "history"
+    }
+  },
+  "advbench": {
+    "file_name": "harmful_behaviors.csv",
+    "columns": {
+      "prompt": "goal",
+      "response": "target"
+    }
+  },
+  "alpaca_eval": {
+    "file_name": "alpaca_eval.json",
+    "columns": {
+      "prompt": "instruction",
+      "response": "output"
+    }
+  }
+}
