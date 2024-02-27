@@ -1,20 +1,20 @@
 { 
-  "gsm8k": {
-    "file_name": "gsm8k.json",
+  "gsm8k_train": {
+    "file_name": "gsm8k/gsm8k_train.json",
     "columns": {
       "prompt": "question",
       "response": "answer"
     }
   },
   "gsm8k_test": {
-    "file_name": "gsm8k_test.json",
+    "file_name": "gsm8k/gsm8k_test.json",
     "columns": {
       "prompt": "question",
       "response": "answer"
     }
   },
   "distilled_gsm8k": {
-    "file_name": "distilled_gsm8k.json",
+    "file_name": "gsm8k/distilled_gsm8k.json",
     "columns": {
       "prompt": "question",
       "response": "answer"
@@ -27,43 +27,43 @@
       "response": "output"
     }
   },
-  "magicoder": {
-    "file_name": "magicoder.json",
+  "magicoder_train": {
+    "file_name": "magicoder/magicoder_train.json",
     "columns": {
       "prompt": "instruction",
       "response": "output"
     }
   },
   "distilled_magicoder": {
-    "file_name": "distilled_magicoder.json",
+    "file_name": "magicoder/distilled_magicoder.json",
     "columns": {
       "prompt": "instruction",
       "response": "output"
     }
   },
-  "openfunction": {
-    "file_name": "openfunction.json",
+  "openfunction_train": {
+    "file_name": "openfunction/openfunction_train.json",
     "columns": {
       "prompt": "instruction",
       "response": "output"
     }
   },
   "openfunction_test": {
-    "file_name": "openfunction_test.json",
+    "file_name": "openfunction/openfunction_test.json",
     "columns": {
       "prompt": "instruction",
       "response": "output"
     }
   },
   "distilled_openfunction": {
-    "file_name": "distilled_openfunction.json",
+    "file_name": "openfunction/distilled_openfunction.json",
     "columns": {
       "prompt": "instruction",
       "response": "output"
     }
   },
-  "alpaca": {
-    "file_name": "alpaca.json",
+  "alpaca_train": {
+    "file_name": "alpaca/alpaca_train.json",
     "columns": {
       "prompt": "instruction",
       "query": "input",
@@ -71,15 +71,15 @@
     }
   },
   "distilled_alpaca": {
-    "file_name": "distilled_alpaca.json",
+    "file_name": "alpaca/distilled_alpaca.json",
     "columns": {
       "prompt": "instruction",
       "query": "input",
       "response": "output"
     }
   },
-  "dolly": {
-    "file_name": "dolly.json",
+  "dolly_train": {
+    "file_name": "dolly/dolly_train.json",
     "columns": {
       "prompt": "instruction",
       "query": "input",
@@ -87,15 +87,15 @@
     }
   },
   "distilled_dolly": {
-    "file_name": "distilled_dolly.json",
+    "file_name": "dolly/distilled_dolly.json",
     "columns": {
       "prompt": "instruction",
       "query": "input",
       "response": "output"
     }
   },
-  "lima": {
-    "file_name": "lima.json",
+  "lima_train": {
+    "file_name": "lima/lima_train.json",
     "file_sha1": "9db59f6b7007dc4b17529fc63379b9cd61640f37",
     "columns": {
       "prompt": "instruction",
@@ -105,7 +105,7 @@
     }
   },
   "distilled_lima": {
-    "file_name": "distilled_lima.json",
+    "file_name": "lima/distilled_lima.json",
     "columns": {
       "prompt": "instruction",
       "query": "input",

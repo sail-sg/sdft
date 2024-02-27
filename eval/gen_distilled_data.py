@@ -14,7 +14,7 @@ def main(dataset, predict_jsonl):
     output_data_list = get_output_data_list(
         origin_dataset, predict_jsonl, check_func
     )
-    output_file = f"data/{distilled_dataset_name}.json"
+    output_file = f"data/{dataset}/{distilled_dataset_name}.json"
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(output_data_list, f, ensure_ascii=False, indent=4)
 

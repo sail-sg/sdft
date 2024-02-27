@@ -23,7 +23,7 @@ CUDA_VISIBLE_DEVICES=${cuda_visible_devices} python src/train_bash.py \
     --stage sft \
     --model_name_or_path ${model_path} \
     --do_train \
-    --dataset ${train_dataset} \
+    --dataset ${train_dataset}_train \
     --template gsm8k \
     --finetuning_type lora \
     --lora_target q_proj,v_proj \

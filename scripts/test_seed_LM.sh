@@ -5,14 +5,14 @@ source "scripts/utils.sh"
 # Configurations
 model_path="/data/yangzr/Llama-2-7b-chat-hf"
 output_folder="predictions/seed"
-cuda_visible_devices="7"
+cuda_visible_devices="6"
 result_file="results/seed_LM.log"
 
 create_empty_file ${result_file}
 echo -e "Evaluation on seed LM.\n" >> ${result_file}
 
 # Evaluate math reasoning capabilities
-for math_dataset in gsm8k multiarith;
+for      in gsm8k multiarith;
 do
     echo "Evaluation on ${math_dataset}:" >> ${result_file}
     output_dir="${output_folder}/${math_dataset}"

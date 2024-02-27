@@ -4,7 +4,7 @@ source "scripts/utils.sh"
 
 # Configurations
 model_path="/data/yangzr/Llama-2-7b-chat-hf"
-cuda_visible_devices="0"
+cuda_visible_devices="4"
 type=sft
 train_dataset=alpaca
 output_folder="predictions/${train_dataset}/${type}"
@@ -23,7 +23,7 @@ CUDA_VISIBLE_DEVICES=${cuda_visible_devices} python src/train_bash.py \
     --stage sft \
     --model_name_or_path ${model_path} \
     --do_train \
-    --dataset ${train_dataset} \
+    --dataset ${train_dataset}_train \
     --template alpaca \
     --finetuning_type lora \
     --lora_target q_proj,v_proj \
