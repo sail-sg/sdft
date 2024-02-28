@@ -17,7 +17,9 @@ Install all dependencies via:
 pip install -r requirements.txt
 ```
 
-Our experiments is based on [Llama-2-chat-7b-hf](https://huggingface.co/meta-llama/Llama-2-7b-hf) model, so it is necessary to obtain the appropriate grant.
+Our experiments are based on [Llama-2-chat-7b-hf](https://huggingface.co/meta-llama/Llama-2-7b-hf) model, so it is necessary to obtain the appropriate grant.
+
+The experiments were conducted using CUDA version 11.8.
 
 ## Usage
 All required bash scripts for replicating the experimental results are located in the [scripts](scripts) directory. Prior to execution, ensure that the paths are correctly set within each script.
@@ -44,7 +46,7 @@ Lastly, the [results](results) directory contains logs of the evaluation results
 
 
 ## Acknowledgement
-Our implementation is based on [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory/tree/d42c0b1d3482af5912ebe578b3e6b4d08cd7ee99), and utilizes evaluation tools including [AlpacaEval](https://github.com/tatsu-lab/alpaca_eval), [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness), and [bigcode-evaluation-harness](https://github.com/bigcode-project/bigcode-evaluation-harness). The former two are included as dependencies within `requirements.txt`, while the latter is integrated as a Git submodule.
+Our implementation is based on [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory/tree/d42c0b1d3482af5912ebe578b3e6b4d08cd7ee99), for which we are thankful for the exceptional work. For evaluation purposes, we employ tools including [AlpacaEval](https://github.com/tatsu-lab/alpaca_eval), [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness), and [bigcode-evaluation-harness](https://github.com/bigcode-project/bigcode-evaluation-harness). Both AlpacaEval and lm-evaluation-harness are included as dependencies in `requirements.txt`, while bigcode-evaluation-harness has been integrated as a Git submodule.
 
 ## Citation
 If you find our paper helpful, consider citing us via:

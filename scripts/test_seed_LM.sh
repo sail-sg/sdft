@@ -12,7 +12,7 @@ create_empty_file ${result_file}
 echo -e "Evaluation on seed LM.\n" >> ${result_file}
 
 # Evaluate math reasoning capabilities
-for      in gsm8k multiarith;
+for math_dataset in gsm8k multiarith;
 do
     echo "Evaluation on ${math_dataset}:" >> ${result_file}
     output_dir="${output_folder}/${math_dataset}"
