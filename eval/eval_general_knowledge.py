@@ -15,6 +15,6 @@ if __name__ == '__main__':
     parser.add_argument("--input_file", type=str, required=True)
     args = parser.parse_args()
     print("Evaluation on OpenLLM Leaderboard:")
-    for dataset in ["truthfulqa", "ai2_arc", "hellaswag", "winogrande"]:
+    for dataset in ["mmlu", "truthfulqa", "ai2_arc", "hellaswag", "winogrande"]:
         get_acc(args.input_file, dataset)
     print()

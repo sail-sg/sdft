@@ -3,9 +3,9 @@ set -e
 source "scripts/utils.sh"
 
 # Configurations
-model_path="/data/yangzr/Llama-2-7b-chat-hf"
+model_path="/home/jovyan/Llama-2-7b-chat-hf"
 output_folder="predictions/seed"
-cuda_visible_devices="6"
+cuda_visible_devices="0"
 result_file="results/seed_LM.log"
 
 create_empty_file ${result_file}
@@ -16,7 +16,7 @@ for math_dataset in gsm8k multiarith;
 do
     echo "Evaluation on ${math_dataset}:" >> ${result_file}
     output_dir="${output_folder}/${math_dataset}"
-    CUDA_VISIBLE_DEVICES=${cuda_visible_devices} python src/train_bash.py \
+    CUDA_VISIBLE_DEVICES=${cuda_visible_devices} python main.py \
         --stage sft \
         --model_name_or_path ${model_path} \
         --do_predict \
@@ -35,7 +35,7 @@ done
 # Evaluate on OpenFunctions
 echo "Evaluation on OpenFunctions:" >> ${result_file}
 output_dir="${output_folder}/openfunction"
-CUDA_VISIBLE_DEVICES=${cuda_visible_devices} python src/train_bash.py \
+CUDA_VISIBLE_DEVICES=${cuda_visible_devices} python main.py \
     --stage sft \
     --model_name_or_path ${model_path} \
     --do_predict \
@@ -69,7 +69,7 @@ python "eval/eval_humaneval.py" --input_file ${output_path} >> ${result_file}
 
 # Predict on alpaca_eval (general helpfulness)
 output_dir="${output_folder}/alpaca_eval"
-CUDA_VISIBLE_DEVICES=${cuda_visible_devices} python src/train_bash.py \
+CUDA_VISIBLE_DEVICES=${cuda_visible_devices} python main.py \
     --stage sft \
     --model_name_or_path ${model_path} \
     --do_predict \
@@ -97,7 +97,7 @@ do
     fi
     echo "Evaluation on ${safety_type} safety:" >> ${result_file}
     output_dir="${output_folder}/advbench-${safety_type}"
-    CUDA_VISIBLE_DEVICES=${cuda_visible_devices} python src/train_bash.py \
+    CUDA_VISIBLE_DEVICES=${cuda_visible_devices} python main.py \
         --stage sft \
         --model_name_or_path ${model_path} \
         --do_predict \
@@ -114,26 +114,10 @@ do
 done
 
 # Evaluate general knowledge 
-# Evaluate MMLU
-output_dir="${output_folder}/MMLU"
-CUDA_VISIBLE_DEVICES=${cuda_visible_devices} python src/evaluate.py \
-    --model_name_or_path ${model_path} \
-    --finetuning_type lora \
-    --template vanilla \
-    --task mmlu \
-    --split test \
-    --lang en \
-    --n_shot 0 \
-    --batch_size 1 \
-    --save_dir ${output_dir}
-
-python "eval/eval_mmlu.py" --input_file "${output_dir}/results.log" >> ${result_file}
-
-# Evaluate with lm-eval-harness
 output_dir="${output_folder}/lm-eval"
 lm_eval --model hf \
     --model_args "pretrained=${model_path}" \
-    --tasks truthfulqa,ai2_arc,hellaswag,winogrande \
+    --tasks mmlu,truthfulqa,ai2_arc,hellaswag,winogrande \
     --device "cuda:${cuda_visible_devices}" \
     --batch_size 1 \
     --output_path ${output_dir}

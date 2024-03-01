@@ -7,7 +7,7 @@ from eval_magicoder import check_magicoder
 from utils import strip_dict
 
 def main(dataset, predict_jsonl):
-    with open(f"data/{dataset}.json") as f:
+    with open(f"data/{dataset}/{dataset}_train.json") as f:
         origin_dataset = json.load(f)
     check_func = get_check_func(dataset)
     distilled_dataset_name = f"distilled_{dataset}"

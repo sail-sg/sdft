@@ -3,7 +3,7 @@ set -e
 source "scripts/utils.sh"
 
 # Configurations
-model_path="/data/yangzr/Llama-2-7b-chat-hf"
+model_path="/home/jovyan/Llama-2-7b-chat-hf"
 cuda_visible_devices="0"
 type=sft
 train_dataset=lima
@@ -19,7 +19,7 @@ per_device_train_batch_size=2
 create_empty_file ${result_file}
 echo -e "Fine-tuning using ${type}\n" >> ${result_file}
 
-CUDA_VISIBLE_DEVICES=${cuda_visible_devices} python src/train_bash.py \
+CUDA_VISIBLE_DEVICES=${cuda_visible_devices} python main.py \
     --stage sft \
     --model_name_or_path ${model_path} \
     --do_train \
@@ -45,10 +45,10 @@ for math_dataset in gsm8k multiarith;
 do
     echo "Evaluation on ${math_dataset}:" >> ${result_file}
     output_dir="${output_folder}/${math_dataset}"
-    CUDA_VISIBLE_DEVICES=${cuda_visible_devices} python src/train_bash.py \
+    CUDA_VISIBLE_DEVICES=${cuda_visible_devices} python main.py \
         --stage sft \
         --model_name_or_path ${model_path} \
-        --checkpoint_dir ${checkpoint_dir} \
+        --adapter_name_or_path ${checkpoint_dir} \
         --do_predict \
         --dataset "${math_dataset}_test" \
         --template gsm8k_infer \
@@ -65,10 +65,10 @@ done
 # Evaluate on OpenFunctions
 echo "Evaluation on OpenFunctions:" >> ${result_file}
 output_dir="${output_folder}/openfunction"
-CUDA_VISIBLE_DEVICES=${cuda_visible_devices} python src/train_bash.py \
+CUDA_VISIBLE_DEVICES=${cuda_visible_devices} python main.py \
     --stage sft \
     --model_name_or_path ${model_path} \
-    --checkpoint_dir ${checkpoint_dir} \
+    --adapter_name_or_path ${checkpoint_dir} \
     --do_predict \
     --dataset openfunction_test \
     --template alpaca \
@@ -101,10 +101,10 @@ python "eval/eval_humaneval.py" --input_file ${output_path} >> ${result_file}
 
 # Predict on alpaca_eval (general helpfulness)
 output_dir="${output_folder}/alpaca_eval"
-CUDA_VISIBLE_DEVICES=${cuda_visible_devices} python src/train_bash.py \
+CUDA_VISIBLE_DEVICES=${cuda_visible_devices} python main.py \
     --stage sft \
     --model_name_or_path ${model_path} \
-    --checkpoint_dir ${checkpoint_dir} \
+    --adapter_name_or_path ${checkpoint_dir} \
     --do_predict \
     --dataset alpaca_eval \
     --template alpaca \
@@ -130,10 +130,10 @@ do
     fi
     echo "Evaluation on ${safety_type} safety:" >> ${result_file}
     output_dir="${output_folder}/advbench-${safety_type}"
-    CUDA_VISIBLE_DEVICES=${cuda_visible_devices} python src/train_bash.py \
+    CUDA_VISIBLE_DEVICES=${cuda_visible_devices} python main.py \
         --stage sft \
         --model_name_or_path ${model_path} \
-        --checkpoint_dir ${checkpoint_dir} \
+        --adapter_name_or_path ${checkpoint_dir} \
         --do_predict \
         --dataset advbench \
         --template ${template} \
@@ -148,31 +148,13 @@ do
 done
 
 # Evaluate general knowledge 
-# Evaluate MMLU
-output_dir="${output_folder}/MMLU"
-CUDA_VISIBLE_DEVICES=${cuda_visible_devices} python src/evaluate.py \
-    --model_name_or_path ${model_path} \
-    --checkpoint_dir ${checkpoint_dir} \
-    --finetuning_type lora \
-    --template vanilla \
-    --task mmlu \
-    --split test \
-    --lang en \
-    --n_shot 0 \
-    --batch_size 1 \
-    --save_dir ${output_dir}
-
-python "eval/eval_mmlu.py" --input_file "${output_dir}/results.log" >> ${result_file}
-
-# Evaluate with lm-eval-harness
 output_dir="${output_folder}/lm-eval"
 lm_eval --model hf \
-    --model_args "pretrained=${model_path},peft=${checkpoint_dir}" \
-    --tasks truthfulqa,ai2_arc,hellaswag,winogrande \
+    --model_args "pretrained=${model_path}" \
+    --tasks mmlu,truthfulqa,ai2_arc,hellaswag,winogrande \
     --device "cuda:${cuda_visible_devices}" \
     --batch_size 1 \
     --output_path ${output_dir}
 
 python "eval/eval_general_knowledge.py" --input_file "${output_dir}/results.json" >> ${result_file}
-
-echo "Fine-tuning using ${type} successfully. Results are saved in ${result_file}."
+echo "Evaluation of the seed LM finished successfully. Results are saved in ${result_file}."

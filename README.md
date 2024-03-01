@@ -11,18 +11,20 @@ To ensure the quality of distilled responses, we employ simple heuristics. For r
 
 This selection process is implementd in [eval/gen_distilled_data.py](eval/gen_distilled_data.py). Initially, we exclude responses containing specific words, which typically signify irrelevant repetitions rather than meaningful replies. Subsequently, for datasets pertaining to downstream tasks, we isolate the final answer and remove any that are inconsistent.
 
+To accommodate the self-distillation process, we altered a single line of the source code at `[LLaMA-Factory/src/llmtuner/data/template.py](LLaMA-Factory/src/llmtuner/data/template.py)` on line 92.
+
 ## Setup
 Install all dependencies via:
 ```bash
 pip install -r requirements.txt
+pip install -e LLaMA-Factory
+pip install -e bigcode-evaluation-harness
 ```
 
 Our experiments are based on [Llama-2-chat-7b-hf](https://huggingface.co/meta-llama/Llama-2-7b-hf) model, so it is necessary to obtain the appropriate grant.
 
-The experiments were conducted using CUDA version 11.8.
-
 ## Usage
-All required bash scripts for replicating the experimental results are located in the [scripts](scripts) directory. Prior to execution, ensure that the paths are correctly set within each script.
+All required bash scripts for replicating the experimental results are located in the [scripts](scripts) directory. Prior to execution, ensure that the `model_path` argument is accurately configured. This argument denotes the identifier on Hugging Face or the local path containing the weights of the language model intended for fine-tuning.
 
 To evaluate the seed language model, execute the following command: `bash scripts/test_seed_LM.sh`
 
@@ -31,7 +33,6 @@ For vanilla fine-tuning on a specific task dataset, use: `bash scripts/[dataset]
 For instance, to fine-tune on the Alpaca dataset, the command is: `bash scripts/alpaca/sft.sh`
 
 Similarly, to perform Self-Distillation Fine (SDFT), the corresponding command is: `bash scripts/[dataset]/sdft.sh`
-
 
 ## Structure
 The [data](data) directory houses the datasets utilized for fine-tuning and evaluation. After SDFT, corresponding distilled dataset will be created, denoted by a filename beginning with `distilled`.
@@ -46,7 +47,7 @@ Lastly, the [results](results) directory contains logs of the evaluation results
 
 
 ## Acknowledgement
-Our implementation is based on [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory/tree/d42c0b1d3482af5912ebe578b3e6b4d08cd7ee99), for which we are thankful for the exceptional work. For evaluation purposes, we employ tools including [AlpacaEval](https://github.com/tatsu-lab/alpaca_eval), [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness), and [bigcode-evaluation-harness](https://github.com/bigcode-project/bigcode-evaluation-harness). Both AlpacaEval and lm-evaluation-harness are included as dependencies in `requirements.txt`, while bigcode-evaluation-harness has been integrated as a Git submodule.
+Our implementation is based on [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory/tree/d42c0b1d3482af5912ebe578b3e6b4d08cd7ee99), for which we are thankful for the exceptional work. For evaluation purposes, we employ tools including [AlpacaEval](https://github.com/tatsu-lab/alpaca_eval), [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness), and [bigcode-evaluation-harness](https://github.com/bigcode-project/bigcode-evaluation-harness). Both AlpacaEval and lm-evaluation-harness are included as dependencies in `requirements.txt`, while LLaMA-Factory and bigcode-evaluation-harness have been integrated as a Git submodule.
 
 ## Citation
 If you find our paper helpful, consider citing us via:
