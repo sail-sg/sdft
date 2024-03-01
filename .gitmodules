@@ -1,0 +1,6 @@
+[submodule "LLaMA-Factory"]
+	path = LLaMA-Factory
+	url = https://github.com/rickyang1114/LLaMA-Factory.git
+[submodule "bigcode-evaluation-harness"]
+	path = bigcode-evaluation-harness
+	url = https://github.com/bigcode-project/bigcode-evaluation-harness.git

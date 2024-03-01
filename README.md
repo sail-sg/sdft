@@ -14,6 +14,11 @@ This selection process is implementd in [eval/gen_distilled_data.py](eval/gen_di
 To accommodate the self-distillation process, we altered a single line of the source code at `[LLaMA-Factory/src/llmtuner/data/template.py](LLaMA-Factory/src/llmtuner/data/template.py)` on line 92.
 
 ## Setup
+Clone the repo with submodules:
+```bash
+git clone --recurse-submodules https://github.com/sail-sg/sdft.git
+```
+
 Install all dependencies via:
 ```bash
 pip install -r requirements.txt
@@ -47,7 +52,11 @@ Lastly, the [results](results) directory contains logs of the evaluation results
 
 
 ## Acknowledgement
-Our implementation is based on [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory/tree/d42c0b1d3482af5912ebe578b3e6b4d08cd7ee99), for which we are thankful for the exceptional work. For evaluation purposes, we employ tools including [AlpacaEval](https://github.com/tatsu-lab/alpaca_eval), [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness), and [bigcode-evaluation-harness](https://github.com/bigcode-project/bigcode-evaluation-harness). Both AlpacaEval and lm-evaluation-harness are included as dependencies in `requirements.txt`, while LLaMA-Factory and bigcode-evaluation-harness have been integrated as a Git submodule.
+Our implementation is based on [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory), for which we are thankful for the exceptional work. For evaluation purposes, we employ tools including [AlpacaEval](https://github.com/tatsu-lab/alpaca_eval), [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness), and [bigcode-evaluation-harness](https://github.com/bigcode-project/bigcode-evaluation-harness). Both AlpacaEval and lm-evaluation-harness are included as dependencies in `requirements.txt`, while LLaMA-Factory and bigcode-evaluation-harness have been integrated as a Git submodule.
+
+To facilitate the self-distillation process, we created a fork of [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory) at [this repository](https://github.com/rickyang1114/LLaMA-Factory), incorporating a modification to a single line of code.
+
+The `main` branch has undergone refactoring. To accurately replicate the results presented in the paper, switching to the `reproduce` branch is recommended.
 
 ## Citation
 If you find our paper helpful, consider citing us via:
