@@ -1,0 +1,3 @@
+[submodule "bigcode-evaluation-harness"]
+	path = bigcode-evaluation-harness
+	url = https://github.com/bigcode-project/bigcode-evaluation-harness.git
