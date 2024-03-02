@@ -62,6 +62,6 @@ def main(dataset, instruction_dataset):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("--dataset", type=str, required=True)
-    parser.add_argument("--instruction_dataset", type=str, default="advbench")
+    parser.add_argument("--instruction_dataset", type=str, default="advbench-raw")
     args = parser.parse_args()
     main(args.dataset, args.instruction_dataset)

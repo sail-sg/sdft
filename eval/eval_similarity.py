@@ -53,7 +53,7 @@ def draw(sft_similarity_array, sdft_similarity_array):
 def main(dataset, instruction_dataset):
     seed_file = f"predictions/seed/{instruction_dataset}/generated_predictions.jsonl"
     sft_file = f"predictions/{dataset}/sft/{instruction_dataset}/generated_predictions.jsonl"
-    sdft_file = f"predictions/{dataset}/sdft-using/{instruction_dataset}/generated_predictions.jsonl"
+    sdft_file = f"predictions/{dataset}/sdft/{instruction_dataset}/generated_predictions.jsonl"
     encoder = SentenceTransformer("all-MiniLM-L6-v2")
     seed_outputs = get_outputs(seed_file)
     sft_outputs = get_outputs(sft_file)
@@ -70,6 +70,6 @@ def main(dataset, instruction_dataset):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--dataset", type=str, required=True)
-    parser.add_argument("--instruction_dataset", type=str, default="advbench")
+    parser.add_argument("--instruction_dataset", type=str, default="advbench-raw")
     args = parser.parse_args()
     main(args.dataset, args.instruction_dataset)

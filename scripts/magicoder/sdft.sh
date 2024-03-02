@@ -170,11 +170,11 @@ done
 # Evaluate general knowledge 
 output_dir="${output_folder}/lm-eval"
 lm_eval --model hf \
-    --model_args "pretrained=${model_path}" \
+    --model_args "pretrained=${model_path},peft=${checkpoint_dir}" \
     --tasks mmlu,truthfulqa,ai2_arc,hellaswag,winogrande \
     --device "cuda:${cuda_visible_devices}" \
     --batch_size 1 \
     --output_path ${output_dir}
 
 python "eval/eval_general_knowledge.py" --input_file "${output_dir}/results.json" >> ${result_file}
-echo "Evaluation of the seed LM finished successfully. Results are saved in ${result_file}."
+echo "Evaluation after fine-tuning on ${train_dataset} using ${type} fininshed successfully. Results are saved in ${result_file}."
