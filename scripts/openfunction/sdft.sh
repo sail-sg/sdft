@@ -25,7 +25,7 @@ CUDA_VISIBLE_DEVICES=${cuda_visible_devices} python src/train_bash.py \
     --stage sft \
     --model_name_or_path ${model_path} \
     --do_predict \
-    --dataset ${train_dataset} \
+    --dataset ${train_dataset}_train \
     --template alpaca_distill_refer \
     --output_dir ${tmp_predictions_dir} \
     --per_device_eval_batch_size 1 \
@@ -36,7 +36,7 @@ CUDA_VISIBLE_DEVICES=${cuda_visible_devices} python src/train_bash.py \
 
 # Train on distilled dataset
 python "eval/gen_distilled_data.py" \
-    --dataset ${train_dataset} \
+    --dataset ${train_dataset}_train \
     --predict_jsonl ${tmp_predictions_dir}/generated_predictions.jsonl
 
 CUDA_VISIBLE_DEVICES=${cuda_visible_devices} python src/train_bash.py \
