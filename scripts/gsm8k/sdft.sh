@@ -35,7 +35,7 @@ CUDA_VISIBLE_DEVICES=${cuda_visible_devices} python src/train_bash.py \
     --fp16
 
 python "eval/gen_distilled_data.py" \
-    --dataset ${train_dataset}_train \
+    --dataset ${train_dataset} \
     --predict_jsonl ${tmp_predictions_dir}/generated_predictions.jsonl
 
 # Train on distilled dataset
@@ -44,7 +44,7 @@ CUDA_VISIBLE_DEVICES=${cuda_visible_devices} python src/train_bash.py \
     --model_name_or_path ${model_path} \
     --do_train \
     --dataset distilled_${train_dataset} \
-    --template gsm8k_train \
+    --template gsm8k \
     --finetuning_type lora \
     --lora_target q_proj,v_proj \
     --output_dir ${checkpoint_dir} \

@@ -36,7 +36,7 @@ CUDA_VISIBLE_DEVICES=${cuda_visible_devices} python src/train_bash.py \
 
 # Train on distilled dataset
 python "eval/gen_distilled_data.py" \
-    --dataset ${train_dataset}_train \
+    --dataset ${train_dataset} \
     --predict_jsonl ${tmp_predictions_dir}/generated_predictions.jsonl
 
 CUDA_VISIBLE_DEVICES=${cuda_visible_devices} python src/train_bash.py \

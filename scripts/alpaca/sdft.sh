@@ -4,7 +4,7 @@ source "scripts/utils.sh"
 
 # Configurations
 model_path="/data/yangzr/Llama-2-7b-chat-hf"
-cuda_visible_devices="1"
+cuda_visible_devices="5"
 type=sdft
 train_dataset=alpaca
 output_folder="predictions/${train_dataset}/${type}"
@@ -35,7 +35,7 @@ CUDA_VISIBLE_DEVICES=${cuda_visible_devices} python src/train_bash.py \
     --fp16
 
 python "eval/gen_distilled_data.py" \
-    --dataset ${train_dataset}_train \
+    --dataset ${train_dataset} \
     --predict_jsonl ${tmp_predictions_dir}/generated_predictions.jsonl
 
 # Train on distilled dataset
