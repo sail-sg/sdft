@@ -19,3 +19,4 @@ sse-starlette
 matplotlib
 sentence_transformers
 lm-eval
+alpaca-eval
