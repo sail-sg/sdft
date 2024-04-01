@@ -68,7 +68,7 @@ _register_template(
 
 _register_template(
     name="gsm8k_distill",
-    format_user=StringFormatter(slots=[{"bos_token"}, "[INST] {{content}} [/INST] Great! Let's think step by step. "]),
+    format_user=StringFormatter(slots=[{"bos_token"}, "[INST] {{content}}\n\n{{resp}} [/INST] Great! Let's think step by step. "]),
     format_system=StringFormatter(slots=["<<SYS>>\n{{content}}\n<</SYS>>\n\n"]),
     default_system=(
         "You are an expert in math. "
