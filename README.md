@@ -39,6 +39,8 @@ For instance, to fine-tune on the Alpaca dataset, the command is: `bash scripts/
 
 Similarly, to perform Self-Distillation Fine (SDFT), the corresponding command is: `bash scripts/[dataset]/sdft.sh`
 
+**The `main` branch has been subjected to refactoring, potentially introducing discrepancies within 1%. For precise replication of the results presented in the paper, it is recommended to utilize the `reproduce` branch. **
+
 ## Structure
 The [data](data) directory houses the datasets utilized for fine-tuning and evaluation. After SDFT, corresponding distilled dataset will be created, denoted by a filename beginning with `distilled`.
 
@@ -55,8 +57,6 @@ Lastly, the [results](results) directory contains logs of the evaluation results
 Our implementation is based on [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory), for which we are thankful for the exceptional work. For evaluation purposes, we employ tools including [AlpacaEval](https://github.com/tatsu-lab/alpaca_eval), [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness), and [bigcode-evaluation-harness](https://github.com/bigcode-project/bigcode-evaluation-harness). Both AlpacaEval and lm-evaluation-harness are included as dependencies in `requirements.txt`, while LLaMA-Factory and bigcode-evaluation-harness have been integrated as a Git submodule.
 
 To facilitate the self-distillation process, we created a fork of [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory) at [this repository](https://github.com/rickyang1114/LLaMA-Factory), incorporating a modification to a single line of code.
-
-The `main` branch has undergone refactoring. To accurately replicate the results presented in the paper, switching to the `reproduce` branch is recommended.
 
 ## Citation
 If you find our paper helpful, consider citing us via:
