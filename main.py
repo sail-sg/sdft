@@ -43,38 +43,100 @@ _register_template(
     )
 )
 
+system_gsm8k = (
+    "You are an expert in math. "
+    "Below is a math question. "
+    "Write a response that appropriately answers the question."
+)
+
+system_gsm8k_infer = (
+    "You are an expert in math. "
+    "Below is a math question. "
+    "Write a response that appropriately answers the question. "
+    "Your final answer should be an integer at the end of your response, formatted as: The answer is {answer}."
+)
+
+system_gsm8k_distill = (
+    "You are an expert in math. "
+    "Below are a math question and its reference answer. "
+    "Refer to the reference answer and write a response that appropriately answers the question."
+)
+
 _register_template(
     name="gsm8k",
     format_user=StringFormatter(slots=[{"bos_token"}, "[INST] {{content}} [/INST]"]),
     format_system=StringFormatter(slots=["<<SYS>>\n{{content}}\n<</SYS>>\n\n"]),
-    default_system=(
-        "You are an expert in math. "
-        "Below is a math question. "
-        "Write a response that appropriately answers the question."
-    ),
+    default_system=system_gsm8k,
 )
 
 _register_template(
     name="gsm8k_infer",
     format_user=StringFormatter(slots=[{"bos_token"}, "[INST] {{content}} [/INST]"]),
     format_system=StringFormatter(slots=["<<SYS>>\n{{content}}\n<</SYS>>\n\n"]),
-    default_system=(
-        "You are an expert in math. "
-        "Below is a math question. "
-        "Write a response that appropriately answers the question. "
-        "Your final answer should be an integer at the end of your response, formatted as: The answer is {answer}."
-    ),
+    default_system=system_gsm8k_infer,
 )
 
 _register_template(
     name="gsm8k_distill",
     format_user=StringFormatter(slots=[{"bos_token"}, "[INST] {{content}}\n\n{{resp}} [/INST] Great! Let's think step by step. "]),
     format_system=StringFormatter(slots=["<<SYS>>\n{{content}}\n<</SYS>>\n\n"]),
-    default_system=(
-        "You are an expert in math. "
-        "Below are a math question and its reference answer. "
-        "Refer to the reference answer and write a response that appropriately answers the question."
+    default_system=system_gsm8k_distill,
+)
+
+_register_template(
+    name="llama3_gsm8k",
+    format_user=StringFormatter(
+        slots=[
+            (
+                "<|start_header_id|>user<|end_header_id|>\n\n{{content}}<|eot_id|>"
+                "<|start_header_id|>assistant<|end_header_id|>\n\n"
+            )
+        ]
     ),
+    format_system=StringFormatter(
+        slots=[{"bos_token"}, "<|start_header_id|>system<|end_header_id|>\n\n{{content}}<|eot_id|>"]
+    ),
+    default_system=system_gsm8k,
+    stop_words=["<|eot_id|>"],
+    replace_eos=True,
+)
+
+_register_template(
+    name="llama3_gsm8k_infer",
+    format_user=StringFormatter(
+        slots=[
+            (
+                "<|start_header_id|>user<|end_header_id|>\n\n{{content}}<|eot_id|>"
+                "<|start_header_id|>assistant<|end_header_id|>\n\n"
+            )
+        ]
+    ),
+    format_system=StringFormatter(
+        slots=[{"bos_token"}, "<|start_header_id|>system<|end_header_id|>\n\n{{content}}<|eot_id|>"]
+    ),
+    default_system=system_gsm8k_infer,
+    stop_words=["<|eot_id|>"],
+    replace_eos=True,
+)
+
+
+_register_template(
+    name="llama3_gsm8k_distill",
+    format_user=StringFormatter(
+        slots=[
+            (
+                "<|start_header_id|>user<|end_header_id|>\n\n{{content}}\n\n{{resp}}<|eot_id|>"
+                "<|start_header_id|>assistant<|end_header_id|>\n\n"
+                "Great! Let's think step by step. "
+            )
+        ]
+    ),
+    format_system=StringFormatter(
+        slots=[{"bos_token"}, "<|start_header_id|>system<|end_header_id|>\n\n{{content}}<|eot_id|>"]
+    ),
+    default_system=system_gsm8k_distill,
+    stop_words=["<|eot_id|>"],
+    replace_eos=True,
 )
 
 import train_bash
