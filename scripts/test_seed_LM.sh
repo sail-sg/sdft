@@ -3,7 +3,7 @@ set -e
 source "scripts/utils.sh"
 
 # Configurations
-model_path="/home/jovyan/Llama-2-7b-chat-hf"
+model_path="meta-llama/Llama-2-7b-chat-hf"
 output_folder="predictions/seed"
 cuda_visible_devices="0"
 result_file="results/seed_LM.log"

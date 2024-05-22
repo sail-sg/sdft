@@ -3,7 +3,7 @@ set -e
 source "scripts/utils.sh"
 
 # Configurations
-model_path="/home/jovyan/Llama-2-7b-chat-hf"
+model_path="meta-llama/Llama-2-7b-chat-hf"
 cuda_visible_devices="0"
 type=sft
 train_dataset=magicoder

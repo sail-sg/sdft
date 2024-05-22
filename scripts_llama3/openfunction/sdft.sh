@@ -4,12 +4,13 @@ source "scripts/utils.sh"
 
 # Configurations
 model_path="meta-llama/Meta-Llama-3-8B-Instruct"
-cuda_visible_devices="0"
-type=sft
-train_dataset=gsm8k
-output_folder="predictions/${train_dataset}/${type}"
-result_file="results/${train_dataset}/${type}.log"
-checkpoint_dir=checkpoints/${train_dataset}/${type}
+cuda_visible_devices="3"
+type=sdft
+train_dataset=openfunction
+output_folder="predictions_llama3/${train_dataset}/${type}"
+result_file="results_llama3/${train_dataset}/${type}.log"
+checkpoint_dir="checkpoints_llama3/${train_dataset}/${type}"
+tmp_predictions_dir="predictions_llama3/${train_dataset}/${type}/distilled"
 
 # Hyperparameters
 epoch=5
@@ -19,12 +20,31 @@ per_device_train_batch_size=2
 create_empty_file ${result_file}
 echo -e "Fine-tuning using ${type}\n" >> ${result_file}
 
+# Generate distilled dataset
+CUDA_VISIBLE_DEVICES=${cuda_visible_devices} python main.py \
+    --stage sft \
+    --model_name_or_path ${model_path} \
+    --do_predict \
+    --dataset ${train_dataset}_train \
+    --template alpaca_distill_refer \
+    --output_dir ${tmp_predictions_dir} \
+    --per_device_eval_batch_size 1 \
+    --max_samples 9999999999999 \
+    --predict_with_generate \
+    --overwrite_cache \
+    --fp16
+
+# Train on distilled dataset
+python "eval/gen_distilled_data.py" \
+    --dataset ${train_dataset} \
+    --predict_jsonl ${tmp_predictions_dir}/generated_predictions.jsonl
+
 CUDA_VISIBLE_DEVICES=${cuda_visible_devices} python main.py \
     --stage sft \
     --model_name_or_path ${model_path} \
     --do_train \
-    --dataset ${train_dataset}_train \
-    --template gsm8k \
+    --dataset distilled_${train_dataset} \
+    --template alpaca \
     --finetuning_type lora \
     --lora_target q_proj,v_proj \
     --output_dir ${checkpoint_dir} \
@@ -51,7 +71,7 @@ do
         --adapter_name_or_path ${checkpoint_dir} \
         --do_predict \
         --dataset "${math_dataset}_test" \
-        --template gsm8k_infer \
+        --template llama3_gsm8k_infer \
         --output_dir ${output_dir} \
         --per_device_eval_batch_size 1 \
         --max_samples 9999999999999 \
