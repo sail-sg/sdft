@@ -126,5 +126,21 @@
       "prompt": "instruction",
       "response": "output"
     }
+  },
+  "openhermes_train": {
+    "file_name": "openhermes/openhermes_train.json",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output"
+    }
+  },
+  "distilled_openhermes": {
+    "file_name": "openhermes/distilled_openhermes.json",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output"
+    }
   }
 }

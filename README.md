@@ -3,7 +3,8 @@
 Here is the code for our work [Self-Distillation Bridges Distribution Gap in Language Model Fine-Tuning](https://arxiv.org/abs/2402.13669). 
 
 ## Update
-- This paper gets accepted by ACL 2024 🎉🎉 Camera-ready version coming soon.
+
+- This paper gets accepted by ACL 2024 and final version is available on [arXiv](https://arxiv.org/abs/2402.13669).
 
 - We integrade scripts for utilizing the [Meta-Llama-3-8B-Instruct](https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct) model to conduct experiments on the [openfunction](https://github.com/ShishirPatil/gorilla/tree/main/openfunctions) dataset. The scripts are available in [scripts_llama3](scripts_llama3).
 
