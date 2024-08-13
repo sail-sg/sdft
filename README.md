@@ -1,6 +1,6 @@
 # Implementation for Self-Distillation Bridges Distribution Gap in Language Model Fine-Tuning
 
-Here is the code for our work [Self-Distillation Bridges Distribution Gap in Language Model Fine-Tuning](aclanthology.org/2024.acl-long.58). 
+Here is the code for our work [Self-Distillation Bridges Distribution Gap in Language Model Fine-Tuning](https://aclanthology.org/2024.acl-long.58). 
 
 ## Update
 
