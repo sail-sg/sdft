@@ -67,10 +67,24 @@ To facilitate the self-distillation process, we created a fork of [LLaMA-Factory
 ## Citation
 If you find our paper helpful, consider citing us via:
 ```
-@inproceedings{yang2024self,
-  title={Self-Distillation Bridges Distribution Gap in Language Model Fine-Tuning},
-  author={Yang, Zhaorui and Pang, Tianyu and Feng, Haozhe and Wang, Han and Chen, Wei and Zhu, Minfeng and Liu, Qian},
-  booktitle={The 62nd Annual Meeting of the Association for Computational Linguistics},
-  year={2024}
+@inproceedings{yang-etal-2024-self,
+    title = "Self-Distillation Bridges Distribution Gap in Language Model Fine-Tuning",
+    author = "Yang, Zhaorui  and
+      Pang, Tianyu  and
+      Feng, Haozhe  and
+      Wang, Han  and
+      Chen, Wei  and
+      Zhu, Minfeng  and
+      Liu, Qian",
+    editor = "Ku, Lun-Wei  and
+      Martins, Andre  and
+      Srikumar, Vivek",
+    booktitle = "Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = aug,
+    year = "2024",
+    address = "Bangkok, Thailand",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2024.acl-long.58",
+    pages = "1028--1043",
 }
 ```
