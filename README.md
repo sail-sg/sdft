@@ -32,7 +32,7 @@ pip install -e LLaMA-Factory
 pip install -e bigcode-evaluation-harness
 ```
 
-Our experiments are based on [Llama-2-chat-7b-hf](https://huggingface.co/meta-llama/Llama-2-7b-hf) model, so it is necessary to obtain the appropriate grant.
+Our experiments are based on [Llama-2-chat-7b-hf](https://huggingface.co/meta-llama/Llama-2-7b-chat-hf) model, so it is necessary to obtain the appropriate grant.
 
 ## Usage
 All required bash scripts for replicating the experimental results are located in the [scripts](scripts) directory. Prior to execution, ensure that the `model_path` argument is accurately configured. This argument denotes the identifier on Hugging Face or the local path containing the weights of the language model intended for fine-tuning.
