@@ -65,7 +65,7 @@ Our implementation is based on [LLaMA-Factory](https://github.com/hiyouga/LLaMA-
 To facilitate the self-distillation process, we created a fork of [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory) at [this repository](https://github.com/rickyang1114/LLaMA-Factory), incorporating a modification to a single line of code.
 
 ## Citation
-If you find our paper helpful, consider citing us via:
+If you find our paper or codebase helpful, consider citing us via:
 ```
 @inproceedings{yang-etal-2024-self,
     title = "Self-Distillation Bridges Distribution Gap in Language Model Fine-Tuning",
@@ -88,5 +88,7 @@ If you find our paper helpful, consider citing us via:
     pages = "1028--1043",
 }
 ```
+
+## Star History
 
 ![Star History Chart](https://api.star-history.com/svg?repos=sail-sg/sdft&type=Date)
