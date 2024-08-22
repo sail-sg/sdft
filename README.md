@@ -88,3 +88,5 @@ If you find our paper helpful, consider citing us via:
     pages = "1028--1043",
 }
 ```
+
+![Star History Chart](https://api.star-history.com/svg?repos=sail-sg/sdft&type=Date)
