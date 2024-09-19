@@ -32,6 +32,7 @@ For instance, to fine-tune on the Alpaca dataset, the command is: `bash scripts/
 
 Similarly, to perform Self-Distillation Fine (SDFT), the corresponding command is: `bash scripts/[dataset]/sdft.sh`
 
+> Currently we only support using a single card for training and inference as demonstrated in the scripts.
 
 ## Structure
 The [data](data) directory houses the datasets utilized for fine-tuning and evaluation. After SDFT, corresponding distilled dataset will be created, denoted by a filename beginning with `distilled`.
