@@ -14,8 +14,7 @@ def main(input_file):
         for line in file:
             predict_data = json.loads(line)
             total_cnt += 1
-            if check_openfunction(predict_data):
-                correct_cnt += 1
+            correct_cnt += check_openfunction(predict_data)
 
     print(f"Accuracy for openfunction: {correct_cnt} / {total_cnt} = {(correct_cnt / total_cnt):.2%}\n")
 
@@ -30,7 +29,24 @@ def check_openfunction(predict_data):
         raise ValueError(f"Target function call is not in the correct format.\n{reference_answer}")
     func_name, params = match.groups()
     pattern = r'\b' + re.escape(func_name) + r'\(' + re.escape(params) + r'\)'
-    return re.search(pattern, standardize_function_call(answer)) is not None
+    # Exact keyword argument match
+    if re.search(pattern, answer) is not None:
+        return 1
+    # keyword match failed, try position argument match, and assign half score
+    answer_param_part = answer[max(answer.find('(') + 1, 0):answer.find(')')]
+    ref_param_list = params.split(',')
+    ans_param_list = answer_param_part.split(',')
+    
+    if len(ref_param_list) != len(ans_param_list):
+        return 0
+    for ref_param, ans_param in zip(ref_param_list, ans_param_list):
+        try:
+            value = ref_param.split('=')[1]
+            if value not in ans_param:
+                return 0
+        except:
+            return 0
+    return 0.5
     
 
 if __name__ == "__main__":
