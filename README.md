@@ -45,7 +45,7 @@ For instance, to fine-tune on the Alpaca dataset, the command is: `bash scripts/
 
 Similarly, to perform Self-Distillation Fine (SDFT), the corresponding command is: `bash scripts/[dataset]/sdft.sh`
 
-**The `main` branch has been subjected to refactoring, potentially introducing minor discrepancies. For precise replication of the results presented in the paper, it is recommended to utilize the `reproduce` branch.**
+**The `main` branch has been subjected to refactoring, potentially introducing minor discrepancies. For precise replication of the results presented in the paper, it is recommended to utilize the `reproduce` branch. Results of a latest run on `reproduce` branch can be found [here](https://github.com/sail-sg/sdft/issues/12).**
 
 ## Structure
 The [data](data) directory houses the datasets utilized for fine-tuning and evaluation. After SDFT, corresponding distilled dataset will be created, denoted by a filename beginning with `distilled`.
